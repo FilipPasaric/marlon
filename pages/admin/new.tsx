@@ -7,7 +7,7 @@ export default function NewPropertyPage() {
   const handleCreate = async (data: any) => {
     const property = {
       ...data,
-      id: Date.now(), // začasni ID — zamenjaj s UUID ali auto-increment če greš na bazo
+      id: Date.now(), // začasni ID — zamenjaj s UUID ali auto-increment če greš na bazo test
       images: [], // dodaj kasneje
       description: "", // prazno za zdaj
       seller: {

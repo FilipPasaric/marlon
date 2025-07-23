@@ -1,9 +1,14 @@
 export default function Hero() {
   return (
     <section
-      className="relative bg-[url('/images/hero_bg.jpg')] bg-cover bg-center bg-no-repeat h-[80vh] flex items-center justify-center"
+      className="relative h-[80vh] flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/images/hero_bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="relative z-10 text-center text-white max-w-2xl px-4">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">MARLON nepremičnine</h1>
         <p className="text-lg md:text-xl mb-6">
@@ -19,5 +24,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

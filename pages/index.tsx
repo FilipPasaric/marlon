@@ -11,7 +11,7 @@ type Property = {
   location: string;
   description: string;
   price: number;
-  image: string;
+  images: string[];
 };
 
 export async function getStaticProps() {

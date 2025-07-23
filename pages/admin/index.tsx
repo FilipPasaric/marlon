@@ -1,10 +1,14 @@
+// pages/admin/index.tsx
+
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { useState, useMemo } from "react";
 import AdminSearchBar from "@/components/AdminSearchBar";
+import { useState, useMemo } from "react";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 type Property = {
   id: number;
@@ -19,25 +23,6 @@ type Props = {
 
 export default function AdminDashboard({ properties }: Props) {
   const router = useRouter();
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [locationFilter, setLocationFilter] = useState("");
-
-  const filteredProperties = useMemo(() => {
-    return properties.filter((p) => {
-      const matchesSearch =
-        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.location.toLowerCase().includes(searchQuery.toLowerCase());
-
-      const matchesLocation = locationFilter
-        ? p.location === locationFilter
-        : true;
-
-      return matchesSearch && matchesLocation;
-    });
-  }, [searchQuery, locationFilter, properties]);
-
-  const uniqueLocations = Array.from(new Set(properties.map((p) => p.location)));
 
   const handleDelete = async (id: number) => {
     if (!confirm("Si prepričan, da želiš izbrisati to nepremičnino?")) return;
@@ -65,15 +50,7 @@ export default function AdminDashboard({ properties }: Props) {
           </Link>
         </div>
 
-        {/* Iskalnik & filter */}
-        <AdminSearchBar
-          onSearch={setSearchQuery}
-          onLocationFilter={setLocationFilter}
-          locations={uniqueLocations}
-        />
-
-        {/* Tabela z rezultati */}
-        <table className="w-full border mt-6">
+        <table className="w-full border">
           <thead>
             <tr className="bg-gray-200 text-left">
               <th className="p-2">ID</th>
@@ -84,7 +61,7 @@ export default function AdminDashboard({ properties }: Props) {
             </tr>
           </thead>
           <tbody>
-            {filteredProperties.map((property) => (
+            {properties.map((property) => (
               <tr key={property.id} className="border-t hover:bg-gray-50">
                 <td className="p-2">{property.id}</td>
                 <td className="p-2">{property.title}</td>
@@ -108,15 +85,26 @@ export default function AdminDashboard({ properties }: Props) {
           </tbody>
         </table>
 
-        {filteredProperties.length === 0 && (
-          <p className="text-gray-500 mt-4">Ni zadetkov.</p>
+        {properties.length === 0 && (
+          <p className="text-gray-500 mt-4">Ni dodanih nepremičnin.</p>
         )}
       </div>
     </div>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+if (!session || !session.user || session.user.role !== "admin") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
   const filePath = path.join(process.cwd(), "public", "data", "properties.json");
   const fileData = fs.readFileSync(filePath, "utf-8");
   const properties: Property[] = JSON.parse(fileData);

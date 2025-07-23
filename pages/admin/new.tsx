@@ -1,5 +1,8 @@
 import { useRouter } from "next/router";
 import PropertyForm from "@/components/PropertyForm";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { GetServerSideProps } from "next";
 
 export default function NewPropertyPage() {
   const router = useRouter();
@@ -39,3 +42,21 @@ export default function NewPropertyPage() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session || session.user.role !== "admin") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
+

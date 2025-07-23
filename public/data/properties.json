@@ -79,5 +79,47 @@
       "phone": "070788973",
       "email": "filip.pasaric@gmail.com"
     }
+  },
+  {
+    "title": "123",
+    "location": "123",
+    "price": 123,
+    "area": 123,
+    "floor": "123",
+    "rooms": 1,
+    "features": [
+      "Internet"
+    ],
+    "heating": "Plin",
+    "energyClass": "B",
+    "id": 1753307986226,
+    "images": [],
+    "description": "",
+    "seller": {
+      "name": "Admin",
+      "phone": "",
+      "email": ""
+    }
+  },
+  {
+    "title": "321",
+    "location": "321",
+    "price": 321,
+    "area": 321,
+    "floor": "231",
+    "rooms": 1312,
+    "features": [
+      "Parkirno mesto"
+    ],
+    "heating": "Plin",
+    "energyClass": "B",
+    "id": 1753307999268,
+    "images": [],
+    "description": "",
+    "seller": {
+      "name": "Admin",
+      "phone": "",
+      "email": ""
+    }
   }
 ]

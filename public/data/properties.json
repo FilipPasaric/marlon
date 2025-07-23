@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Stanovanje v Ljubljani",
+    "location": "Ljubljana, Bežigrad",
+    "area": 100,
+    "price": 230000,
+    "images": [
+      "/images/stanovanje.jpg",
+      "/images/inside1.jpg",
+      "/images/inside2.jpg"
+    ],
+    "description": "3-sobno stanovanje z balkonom in parkiriščem.\\nPopolna priložnost za udobno bivanje.",
+    "features": [
+      "Balkon",
+      "Parkirno mesto",
+      "Klet",
+      "Toplovod",
+      "Internet"
+    ],
+    "floor": "1",
+    "reference": "REF7000001",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10973.906065088755!2d15.638275299999998!3d46.558041349999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ssi!4v1753247685180!5m2!1sen!2ssi",
+    "seller": {
+      "name": "Marlon d.o.o.",
+      "address": "Cesta v Gorice 25, 1000 Ljubljana",
+      "phone": "+386 40 123 456",
+      "email": "info@marlon.si",
+      "website": "https://www.marlon.si"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Hiša na podeželju",
+    "location": "Domžale",
+    "area": 115,
+    "price": 340000,
+    "images": [
+      "/images/hisa.jpg",
+      "/images/inside1.jpg",
+      "/images/inside2.jpg"
+    ],
+    "description": "Samostojna hiša z veliko zelenico in garažo.\\nPopolna priložnost za udobno bivanje.",
+    "features": [
+      "Balkon",
+      "Parkirno mesto",
+      "Klet",
+      "Toplovod",
+      "Internet"
+    ],
+    "floor": "1",
+    "reference": "REF7000002",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10973.906065088755!2d15.638275299999998!3d46.558041349999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ssi!4v1753247685180!5m2!1sen!2ssi",
+    "seller": {
+      "name": "Marlon d.o.o.",
+      "address": "Cesta v Gorice 25, 1000 Ljubljana",
+      "phone": "+386 40 123 456",
+      "email": "info@marlon.si",
+      "website": "https://www.marlon.si"
+    }
+  },
+  {
+    "id": 1753297018600,
+    "title": "Nova bajta",
+    "location": "https://maps.app.goo.gl/kazYtWC3tFTr8gDP9",
+    "description": "Novi opis",
+    "price": 120000,
+    "area": 100,
+    "images": [
+      "https://www.rustomjee.com/blog/wp-content/uploads/2024/08/IMAGE_1000-X-374-copy.jpg"
+    ],
+    "features": [
+      "Balkon"
+    ],
+    "floor": "10",
+    "reference": "20",
+    "seller": {
+      "name": "Filip",
+      "phone": "070788973",
+      "email": "filip.pasaric@gmail.com"
+    }
+  }
+]

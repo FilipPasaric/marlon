@@ -9,17 +9,15 @@ import AdminSearchBar from "@/components/AdminSearchBar";
 import { useState, useMemo } from "react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-
-type Property = {
-  id: number;
-  title: string;
-  location: string;
-  price: number;
-};
+import type { Property } from "@/types/property";
 
 type Props = {
   properties: Property[];
 };
+
+type BasicProperty = Pick<Property, "id" | "title" | "location" | "price">;
+
+
 
 export default function AdminDashboard({ properties }: Props) {
   const router = useRouter();
@@ -96,7 +94,7 @@ export default function AdminDashboard({ properties }: Props) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
-if (!session || !session.user || session.user.role !== "admin") {
+  if (!session || !session.user || session.user.role !== "admin") {
     return {
       redirect: {
         destination: "/login",
@@ -105,10 +103,22 @@ if (!session || !session.user || session.user.role !== "admin") {
     };
   }
 
-  const filePath = path.join(process.cwd(), "public", "data", "properties.json");
+  const filePath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    "properties.json"
+  );
   const fileData = fs.readFileSync(filePath, "utf-8");
-  const properties: Property[] = JSON.parse(fileData);
-
+  const rawProperties: Property[] = JSON.parse(fileData);
+  const properties: BasicProperty[] = rawProperties.map(
+    ({ id, title, location, price }) => ({
+      id,
+      title,
+      location,
+      price,
+    })
+  );
   return {
     props: {
       properties,

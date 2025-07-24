@@ -3,26 +3,7 @@ import fs from "fs";
 import path from "path";
 import { useRouter } from "next/router";
 import PropertyForm from "@/components/PropertyForm";
-
-type Property = {
-  id: number;
-  title: string;
-  location: string;
-  description: string;
-  price: number;
-  area: number;
-  floor?: string;
-  features: string[];
-  rooms?: number;
-  heating?: string;
-  energyClass?: string;
-  seller: {
-    name: string;
-    phone: string;
-    email: string;
-  };
-  images: string[];
-};
+import type { Property } from "@/types/property";
 
 type Props = {
   property: Property;
@@ -31,7 +12,7 @@ type Props = {
 export default function EditPropertyPage({ property }: Props) {
   const router = useRouter();
 
-  const handleUpdate = async (data: any) => {
+  const handleUpdate = async (data: Partial<Property>) => {
     const updated = {
       ...property,
       ...data,

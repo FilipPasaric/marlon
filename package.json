@@ -16,7 +16,8 @@
     "react-dom": "19.1.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
-    "yet-another-react-lightbox": "^3.25.0"
+    "yet-another-react-lightbox": "^3.25.0",
+    "zod": "^4.0.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
